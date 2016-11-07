@@ -39,9 +39,8 @@ For each steps
 	    if we include this dish in the knapsack, if yes, then take that dish. 
 	     If not, then skip this dish.
 		 
-		 Finally, we backtrace the array holding maximum satisfacation value and print and return
-
-
+		 Finally, we backtrace the array holding maximum satisfacation value and print all the dishes user consumed.
+		 The satisfaction value using this approach comes out to be 2493893
 
 
 
