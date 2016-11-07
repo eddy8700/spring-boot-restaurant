@@ -6,7 +6,7 @@
 [amount of satisfaction from eating dish 1][time taken for dish 1]
 [amount of satisfaction from dish 2][time taken for dish 2]
 
-Requirements
+#Requirements
 1.Java 1.7 or higher
 2.Maven installed on classpath
 
