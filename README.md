@@ -6,37 +6,46 @@
 [amount of satisfaction from eating dish 1][time taken for dish 1]
 [amount of satisfaction from dish 2][time taken for dish 2]
 
-#Assumptions Made
-The same algo / program has been written taking into consideration that 
-1. t can be in minutes
-2. t can be in seconds
+Requirements
+1.Java 1.7 or higher
+2.Maven installed on classpath
 
-#Algorithmic Approach for Calculation
-Greedy Approach has been followed to calculate the same. We need to get the maximum satisfaction in the given time from certain number of dishes which can be possible by choosing the dish which has maximum satisfaction in minimum time.
-There are so many dishes which might have approximate numbers for the satisfaction and the minimum time. In order to decide between the both we need to understand their satisfaction in time ratio which is simply as
+Build the program following the below steps
+1. Rum mvn install in restaurant-api
+2.Run mvn install in restaurant-impl
+3.Run mvn install in restaurant-rest
 
-SatisfactionInTimeRatio = [Satisfaction Value]/[Time]  
+Controller endpoint is exposed in restaurant-rest Running mvn install on it will alo run the test case for you.
+Application will run on port 8111
 
-#Input
-Input  to the program contains the three things :
-1. The time to eat
-2. The array of time Consumption
-3. The array of satisfaction value
-4. The no of items.
+Rest url :http://localhost:8111/restaurant-service/findMaximumSatisfaction  (GET call)
 
-Output: Maximum Satisfaction value with comments
+This method will invoke the file from classpath resource
+Name of the file is configurable and is specified in the properties file
 
-#Steps to Create the Same:
-1. Create a new Maven Project
-2. Configure the Project as a Spring Boot Application by adding dependcies for the boot starter.
-3. Add Dependencies for the test starter which would help to run the junit test cases.
+This is will delegate the call to the restaurant-impl which will invoke the following method
+buildMaximumSatisfactionForAGivenTime(Integer minutes, Integer[] timeConsumeArray,Integer[] satisactionValueArray, Integer noOfItems)
+1. minutes-no of minutes a user can eat.
+2. timeConsumeArray-array of all elements consisting  of time taken to eat a particluar dish.
+3. satisactionValueArray-array of all elements consisting of satisfacation value achieved in eating a particluar dish.
+4. noOfItems-No of items or dish the user can a try in a particluar sitting.
+
+Approach followed for achieving maximum satisfaction value
+Used the knapsack algorithm to achieve maximum satisfacation value
+Initially created the two dimensional array of items+1 and minutes+1 and filled it with 0's
+For each steps
+      1. find the solutions to maximize satisfacation value  and then iteratively build the solution for original problem. 
+	  2. we check each dish and see whether we are getting the better satisfacation value 
+	    if we include this dish in the knapsack, if yes, then take that dish. 
+	     If not, then skip this dish.
+		 
+		 Finally, we backtrace the array holding maximum satisfacation value and print and return
 
 
-#Steps to the Run the same:
-1. Run the application by clicking on the file Application.java and Run as Application.
-2. Output can be seen on the console.
-3. To Run the test cases: 
 
-i) Open the Command Prompt on the Project Working Directory and run the Maven Command : mvn clean test
-ii)To Run Individual Test Files , Click on Files having pattern *Tests.java and run as JUNIT Tests.
+
+
+
+
+
 
