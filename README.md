@@ -15,7 +15,7 @@ Build the program following the below steps
 2.Run mvn install in restaurant-impl
 3.Run mvn install in restaurant-rest
 
-Controller endpoint is exposed in #restaurant-rest Running mvn install on it will alo run the test case for you.
+Controller endpoint is exposed in restaurant-rest Running mvn install on it will alo run the test case for you.
 Application will run on port 8111
 
 #Rest url :http://localhost:8111/restaurant-service/findMaximumSatisfaction  (GET call)
