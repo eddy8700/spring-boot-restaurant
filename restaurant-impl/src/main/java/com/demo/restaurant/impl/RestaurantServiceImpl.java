@@ -5,6 +5,7 @@ package com.demo.restaurant.impl;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
@@ -27,13 +28,16 @@ public class RestaurantServiceImpl implements RestaurantService {
 
 	/**
 	 * fileToRead to read file from classpath return Long maximumsatisfaction
+	 * @throws FileNotFoundException 
 	 */
-	public Long findMaximumSatisfaction(final File fileToRead) {
-		LOGGER.info("file exists");
+	public Long findMaximumSatisfaction(final File fileToRead) throws FileNotFoundException {
+		if(fileToRead==null){
+			throw new FileNotFoundException("File is missing from classpath");
+		}
 		try (BufferedReader reader = new BufferedReader(new FileReader(fileToRead))) {
 			String firstLine = null;
 			String[] firstLineArray = reader.readLine().split(SPLIT_EXPRESSION);
-			final Integer minutes = new Integer(firstLineArray[0]);
+			final Integer minutesToEat = new Integer(firstLineArray[0]);
 			final Integer noOfItems = new Integer(firstLineArray[1]);
 			Integer[] satisactionValueArray = new Integer[noOfItems];
 			Integer[] timeConsumeArray = new Integer[noOfItems];
@@ -45,8 +49,7 @@ public class RestaurantServiceImpl implements RestaurantService {
 				timeConsumeArray[i] = new Integer(values[1]);
 				i++;
 			}
-			return buildMaximumSatisfactionForAGivenTime(minutes, timeConsumeArray, satisactionValueArray, noOfItems);
-			// System.out.println(satisactionValueArray.size());
+			return buildMaximumSatisfactionForAGivenTime(minutesToEat, timeConsumeArray, satisactionValueArray, noOfItems);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
