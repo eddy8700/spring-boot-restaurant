@@ -11,7 +11,7 @@
 2.Maven installed on classpath
 
 Build the program following the below steps
-1. Rum mvn install in restaurant-api
+1. Run mvn install in restaurant-api
 2.Run mvn install in restaurant-impl
 3.Run mvn install in restaurant-rest
 
